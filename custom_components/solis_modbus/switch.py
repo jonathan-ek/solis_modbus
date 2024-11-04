@@ -23,11 +23,30 @@ async def async_setup_entry(hass, config_entry: ConfigEntry, async_add_devices):
             "entities": [
                 {"type": "SBS", "bit_position": 0, "name": "Solis Self-Use Mode"},
                 {"type": "SBS", "bit_position": 1, "name": "Solis Time Of Use Mode"},
-                {"type": "SBS", "bit_position": 2, "name": "Solis OFF-Grid Mode"},
                 {"type": "SBS", "bit_position": 3, "name": "Solis Battery Wakeup Switch"},
                 {"type": "SBS", "bit_position": 4, "name": "Solis Reserve Battery Mode"},
                 {"type": "SBS", "bit_position": 5, "name": "Solis Allow Grid To Charge The Battery"},
                 {"type": "SBS", "bit_position": 6, "name": "Solis Feed In Priority Mode"},
+                {"type": "SBS", "bit_position": 8, "name": "Solis Battery Focecharge Peak-shaving Function"},
+                {"type": "SBS", "bit_position": 10, "name": "Solis Battery healing mode"},
+                {"type": "SBS", "bit_position": 11, "name": "Solis Peak-shaving mode"},
+            ]
+        },
+        {
+            "read_register": 43707, 'write_register': 43707,
+            "entities": [
+                {"type": "SBS", "bit_position": 0, "name": "Solis Grid-connected charging period 1"},
+                {"type": "SBS", "bit_position": 1, "name": "Solis Grid-connected charging period 2"},
+                {"type": "SBS", "bit_position": 2, "name": "Solis Grid-connected charging period 3"},
+                {"type": "SBS", "bit_position": 3, "name": "Solis Grid-connected charging period 4"},
+                {"type": "SBS", "bit_position": 4, "name": "Solis Grid-connected charging period 5"},
+                {"type": "SBS", "bit_position": 5, "name": "Solis Grid-connected charging period 6"},
+                {"type": "SBS", "bit_position": 6, "name": "Solis Grid-connected discharging period 1"},
+                {"type": "SBS", "bit_position": 7, "name": "Solis Grid-connected discharging period 2"},
+                {"type": "SBS", "bit_position": 8, "name": "Solis Grid-connected discharging period 3"},
+                {"type": "SBS", "bit_position": 9, "name": "Solis Grid-connected discharging period 4"},
+                {"type": "SBS", "bit_position": 10, "name": "Solis Grid-connected discharging period 5"},
+                {"type": "SBS", "bit_position": 11, "name": "Solis Grid-connected discharging period 6"},
             ]
         }
     ]
