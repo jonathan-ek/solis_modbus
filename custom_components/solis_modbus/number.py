@@ -184,7 +184,7 @@ async def async_setup_entry(hass, config_entry: ConfigEntry, async_add_devices):
          "default": 16000.0, "multiplier": 100,
          "min_val": 0, "max_val": 16000, "step": 100,
          "unit_of_measurement": UnitOfPower.WATT, "enabled": True},
-        {"type": "battery capacity", "name": "Solis Battery Capacity", "register": 43019,
+        {"type": "SNE", "name": "Solis Battery Capacity", "register": 43019,
          "default": 100, "multiplier": 1,
          "min_val": 50, "max_val": 500, "step": 1,
          "unit_of_measurement": UnitOfEnergy.WATT_HOUR, "enabled": True},
