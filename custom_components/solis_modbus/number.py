@@ -14,7 +14,7 @@ from homeassistant.components.number import NumberEntity, NumberMode
 from homeassistant.components.sensor import SensorDeviceClass, RestoreSensor
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
-    UnitOfElectricCurrent, PERCENTAGE, UnitOfPower, )
+    UnitOfElectricCurrent, PERCENTAGE, UnitOfPower, UnitOfEnergy)
 from homeassistant.core import callback
 from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.event import async_track_time_interval
@@ -184,6 +184,8 @@ async def async_setup_entry(hass, config_entry: ConfigEntry, async_add_devices):
          "default": 16000.0, "multiplier": 100,
          "min_val": 0, "max_val": 16000, "step": 100,
          "unit_of_measurement": UnitOfPower.WATT, "enabled": True},
+        {"type": "battery capacity", "name": "Solis Battery Capacity", "register": 43019,
+         "default": 100, "multiplier": 1, "unit_of_measurement": UnitOfEnergy.WATT_HOUR, "enabled": True},
     ]
 
     for entity_definition in numbers:
