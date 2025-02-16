@@ -19,6 +19,12 @@ SCHEME_HOLDING_REGISTER = vol.Schema(
         vol.Required("value"): vol.Coerce(int),
     }
 )
+# SCHEME_READ_REGISTER = vol.Schema(
+#     {
+#         vol.Required("address"): vol.Coerce(int),
+#         vol.Required("type"): vol.Coerce(int),
+#     }
+# )
 
 
 async def async_setup(hass: HomeAssistant, config: dict):
@@ -43,6 +49,22 @@ async def async_setup(hass: HomeAssistant, config: dict):
     hass.services.async_register(
         DOMAIN, "solis_write_holding_register", service_write_holding_register, schema=SCHEME_HOLDING_REGISTER
     )
+
+    # def service_read_register(call: ServiceCall):
+    #     address = call.data.get('address')
+    #     value = call.data.get('type')
+    #     controller = hass.data[DOMAIN][CONTROLLER]
+    #     # Perform the logic to write to the holding register using register_address and value_to_write
+    #     # ...
+    #     if value == 3:
+    #         hass.create_task(controller.async_read_holding_register(address))
+    #     else:
+    #         hass.create_task(controller.async_read_input_register(address))
+    #
+    # hass.services.async_register(
+    #     DOMAIN, "solis_read_register", service_read_register, schema=SCHEME_READ_REGISTER
+    # )
+
 
     return True
 
