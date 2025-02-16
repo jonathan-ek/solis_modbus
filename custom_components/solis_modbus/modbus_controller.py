@@ -10,7 +10,7 @@ class ModbusController:
     def __init__(self, host, port=502):
         self.host = host
         self.port = port
-        self.client: AsyncModbusTcpClient = AsyncModbusTcpClient(self.host, port=self.port)
+        self.client: AsyncModbusTcpClient = AsyncModbusTcpClient(host=self.host, port=self.port, retries=10, timeout=10, reconnect_delay=10)
         self.connect_failures = 0
         self._lock = asyncio.Lock()
 
@@ -38,7 +38,7 @@ class ModbusController:
         try:
             await self.connect()
             async with self._lock:
-                result = await self.client.read_input_registers(register, count, slave=1)
+                result = await self.client.read_input_registers(address=register, count=count, slave=1)
                 _LOGGER.debug(f'register value, register = {register}, result = {result.registers}')
             return result.registers
         except Exception as e:
@@ -48,7 +48,7 @@ class ModbusController:
         try:
             await self.connect()
             async with self._lock:
-                result = await self.client.read_holding_registers(register, count, slave=1)
+                result = await self.client.read_holding_registers(address=register, count=count, slave=1)
                 _LOGGER.debug(f'holding register value, register = {register}, result = {result.registers}')
             return result.registers
         except Exception as e:
@@ -58,7 +58,7 @@ class ModbusController:
         try:
             await self.connect()
             async with self._lock:
-                result = await self.client.write_register(register, value, slave=1)
+                result = await self.client.write_register(address=register, value=value, slave=1)
             return result
         except Exception as e:
             raise _LOGGER.error(f"Failed to write Modbus holding register ({register}): {str(e)}")
@@ -67,7 +67,7 @@ class ModbusController:
         try:
             await self.connect()
             async with self._lock:
-                result = await self.client.write_registers(start_register, values, slave=1)
+                result = await self.client.write_registers(address=start_register, values=values, slave=1)
             return result
         except Exception as e:
             raise _LOGGER.error(
