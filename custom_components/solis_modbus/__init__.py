@@ -87,12 +87,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         await controller.connect()
 
     _LOGGER.debug(f'config entry host = {host}, post = {port}')
-
+    hass.async_create_task(
+        hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+    )
     # Set up the platforms associated with this integration
-    for component in PLATFORMS:
-        hass.async_create_task(hass.config_entries.async_forward_entry_setup(entry, component))
-        _LOGGER.debug(f"async_setup_entry: loading: {component}")
-        await asyncio.sleep(1)
+    # for component in PLATFORMS:
+    #     hass.async_create_task(hass.config_entries.async_forward_entry_setup(entry, component))
+    #     _LOGGER.debug(f"async_setup_entry: loading: {component}")
+    #     await asyncio.sleep(1)
     await asyncio.sleep(20)
     return True
 
