@@ -103,7 +103,7 @@ Editable number entities (hybrid).
 
 | Name                                                                     | Register | Bit Position | Note                |
 |--------------------------------------------------------------------------|----------|--------------|---------------------|
-| Solis Power State                                                        | 43007    |              |                     |
+| Solis Inverter Power (On/Off)                                            | 43007    |              |                     |
 | Solis Output Limit Gate                                                  | 43070    |              |                     |
 | Solis Grid feed in power limit switch                                    | 43073    | 4            |                     |
 | Solis Self-Use Mode                                                      | 43110    | 0            |                     |
